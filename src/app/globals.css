@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0; /* تغيير لون النص إلى الأسود للتباين */
+  --background-start-rgb: 255, 255, 255; /* جعل الخلفية بيضاء */
+  --background-end-rgb: 255, 255, 255; /* تأكيد أن تدرج الخلفية يبدأ وينتهي بالأبيض */
+}
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.slider-container {
+  overflow: visible; /* تغيير لضمان عدم إخفاء النتائج */
+}
+ .aa-Panel {
+  z-index: 1000;
+}
+/* styles/global.css */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 0, 0, 0; /* اللون الأسود للنص في الوضع الداكن للتباين */
+    --background-start-rgb: 255, 255, 255; /* خلفية بيضاء حتى في الوضع الداكن */
+    --background-end-rgb: 255, 255, 255; /* تدرج الخلفية يبقى أبيض */
+  }
+}
+.productName {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* عدد الأسطر المسموح بها */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px; /* يمكن تعديل العرض حسب الحاجة */
+  line-height: 1.2; /* يمكن تعديل ارتفاع السطر لتحسين المظهر */
+}
+
+
+body {
+  color: rgb(var(--foreground-rgb)); /* تطبيق لون النص */
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb)); /* تطبيق الخلفية */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance; /* مثال على أداة مخصصة */
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "projectName": "un4shop2024",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "react",
+    "config": {
+      "SourceDir": ".next",
+      "DistributionDir": ".next",
+      "BuildCommand": "npm run build",
+      "StartCommand": "npm run start",
+      "ServerlessContainers": false
+    }
+  },
+  "providers": [
+    "awscloudformation"
+  ]
+}
