@@ -6,30 +6,33 @@ import SwipeableTabs from '../components/SwipeableTabs';
 import SearchComponent from '../components/SearchAutocomplete';
 import ImageCarousel from '../components/ImageCarousel';
 
-async function getData() {
+export async function getServerSideProps() {
   const res = await fetch('http://localhost:5187/api/ProductsController21/ByCategoryName/الملابس?pageNumber=1&pageSize=10');
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
+    return {
+      notFound: true,
+    };
   }
 
-  return res.json();
+  const data = await res.json();
+
+  return {
+    props: {
+      data,
+    },
+  };
 }
 
-export default async function HomePage1() {
-  const data = await getData();
-
+const HomePage1 = ({ data }) => {
   return (
     <Layout>
-
-        <Slide />
-        <ImageCarousel apiEndpoint="http://localhost:5187/api/Categories/main" />
-        <ProductSlider products={data} />
-        <SwipeableTabs />
-    
+      <Slide />
+      <ImageCarousel apiEndpoint="http://localhost:5187/api/Categories/main" />
+      <ProductSlider products={data} />
+      <SwipeableTabs />
     </Layout>
   );
 }
+
+export default HomePage1;
