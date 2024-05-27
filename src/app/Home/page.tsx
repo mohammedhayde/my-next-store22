@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import HeroSection from '@/app/components/HeroSection';
 import Layout from '@/app/components/Layout';
 import ProductSlider from '@/app/components/ProductSlider';
@@ -5,31 +8,41 @@ import Slide from '@/app/components/slide';
 import SwipeableTabs from '../components/SwipeableTabs';
 import SearchComponent from '../components/SearchAutocomplete';
 import ImageCarousel from '../components/ImageCarousel';
+export default function HomePage1() {
+  const [data, setData] = useState([]);
+  const [error, setError] = useState<string | null>(null);
 
-async function getData() {
-  const res = await fetch('http://apiun4shop.eu-west-2.elasticbeanstalk.com//api/ProductsController21/ByCategoryName/الملابس?pageNumber=1&pageSize=10');
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`${process.env.API_URL}/api/ProductsController21/ByCategoryName/الملابس?pageNumber=1&pageSize=10`);
+        
+        if (!res.ok) {
+          throw new Error('Failed to fetch data');
+        }
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
+      
+        const data = await res.json();
+        setData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError('Failed to fetch data');
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (error) {
+    return <div>Error loading data</div>;
   }
-
-  return res.json();
-}
-
-export default async function HomePage1() {
-  const data = await getData();
 
   return (
     <Layout>
-
-        <Slide />
-        <ImageCarousel apiEndpoint="http://apiun4shop.eu-west-2.elasticbeanstalk.com/api/Categories/main" />
-        <ProductSlider products={data} />
-        <SwipeableTabs />
-    
+      <Slide />
+      <ImageCarousel apiEndpoint={`${process.env.API_URL}/api/Categories/main`} />
+      <ProductSlider products={data} />
+      <SwipeableTabs />
     </Layout>
   );
 }
