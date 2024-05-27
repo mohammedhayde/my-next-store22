@@ -7,7 +7,7 @@ import SearchComponent from '../components/SearchAutocomplete';
 import ImageCarousel from '../components/ImageCarousel';
 
 async function getData() {
-  const res = await fetch('http://localhost:5187/api/ProductsController21/ByCategoryName/الملابس?pageNumber=1&pageSize=10');
+  const res = await fetch('http://apiun4shop.eu-west-2.elasticbeanstalk.com//api/ProductsController21/ByCategoryName/الملابس?pageNumber=1&pageSize=10');
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
@@ -26,7 +26,7 @@ export default async function HomePage1() {
     <Layout>
 
         <Slide />
-        <ImageCarousel apiEndpoint="http://localhost:5187/api/Categories/main" />
+        <ImageCarousel apiEndpoint="http://apiun4shop.eu-west-2.elasticbeanstalk.com/api/Categories/main" />
         <ProductSlider products={data} />
         <SwipeableTabs />
     

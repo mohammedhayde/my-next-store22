@@ -2,6 +2,7 @@
 
 const nextConfig = {
   transpilePackages: ['@storefront-ui/react'],
+  
   images: {
     domains: [
       'assets.qa.amalcloud.net',
