@@ -1,0 +1,57 @@
+{
+    "name": "my-next-store22",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "cross-env PORT=3000 next start",
+      "lint": "next lint",
+      "amplify-modelgen": "node amplify\\scripts\\amplify-modelgen.js",
+      "amplify-push": "node amplify\\scripts\\amplify-push.js"
+    },
+    "dependencies": {
+      "@algolia/autocomplete-js": "^1.17.0",
+      "@algolia/autocomplete-plugin-recent-searches": "^1.17.0",
+      "@algolia/autocomplete-theme-classic": "^1.17.0",
+      "@algolia/client-search": "^4.23.3",
+      "@emotion/react": "^11.11.4",
+      "@emotion/styled": "^11.11.5",
+      "@heroicons/react": "^2.1.3",
+      "@mui/material": "^5.15.15",
+      "@storefront-ui/react": "^2.6.1",
+      "algoliasearch": "^4.23.3",
+      "next": "14.1.4",
+      "next-redux-wrapper": "^8.1.0",
+      "next-transpile-modules": "^10.0.1",
+      "node-fetch": "^3.3.2",
+      "preact": "^10.20.2",
+      "react": "^18",
+      "react-dom": "^18",
+      "react-icons": "^5.0.1",
+      "react-infinite-scroll-component": "^6.1.0",
+      "react-instantsearch": "^7.7.2",
+      "react-instantsearch-dom": "^6.40.4",
+      "react-instantsearch-hooks-web": "^6.47.3",
+      "swiper": "^11.1.1"
+    },
+    "devDependencies": {
+      "@types/algoliasearch": "^4.0.0",
+      "@types/node": "^20",
+      "@types/node-fetch": "^2.6.11",
+      "@types/react": "^18",
+      "@types/react-dom": "^18",
+      "@types/react-instantsearch-dom": "^6.12.7",
+      "@types/react-transition-group": "^4.4.10",
+      "autoprefixer": "^10.4.19",
+      "eslint": "^8",
+      "eslint-config-next": "14.1.4",
+      "postcss": "^8.4.38",
+      "tailwindcss": "^3.4.3",
+      "typescript": "^5.4.5",
+      "ini": "^1.3.5",
+      "inquirer": "^6.5.1",
+      "cross-env": "^7.0.3"
+    }
+  }
+  
