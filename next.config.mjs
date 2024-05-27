@@ -48,16 +48,6 @@ const nextConfig = {
       },
     ],
   },
-  exportPathMap: async function (
-    defaultPathMap,
-    { dev, dir, outDir, distDir, buildId }
-  ) {
-    return {
-      '/': { page: '/' },
-      '/Home': { page: '/Home' },
-      // أضف مسارات إضافية هنا إذا كان لديك صفحات أخرى
-    }
-  },
   distDir: 'out', // يمكن تخصيص دليل الإخراج هنا
 };
 
