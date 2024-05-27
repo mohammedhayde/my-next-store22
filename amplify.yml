@@ -7,7 +7,7 @@ frontend:
     build:
       commands:
         - npm run build
-   artifacts:
+  artifacts:
     baseDirectory: out
     files:
       - '**/*'
@@ -16,4 +16,3 @@ frontend:
       - node_modules/**/*
   environment:
     - NODE_ENV=production
-    - PORT=3000
