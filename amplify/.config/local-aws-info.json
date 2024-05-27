@@ -1,0 +1,17 @@
+{
+  "dev": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "C:\\Users\\hamod\\.amplify\\awscloudformation\\s4bT51MIK0"
+  },
+  "newiraq": {
+    "configLevel": "project",
+    "useProfile": true,
+    "profileName": "un4shop"
+  },
+  "devtest": {
+    "configLevel": "project",
+    "useProfile": true,
+    "profileName": "default"
+  }
+}

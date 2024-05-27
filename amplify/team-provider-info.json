@@ -1,0 +1,56 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-un4shop2024-dev-63ba9-authRole",
+      "UnauthRoleArn": "arn:aws:iam::851725292743:role/amplify-un4shop2024-dev-63ba9-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::851725292743:role/amplify-un4shop2024-dev-63ba9-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-un4shop2024-dev-63ba9-deployment",
+      "UnauthRoleName": "amplify-un4shop2024-dev-63ba9-unauthRole",
+      "StackName": "amplify-un4shop2024-dev-63ba9",
+      "StackId": "arn:aws:cloudformation:eu-central-1:851725292743:stack/amplify-un4shop2024-dev-63ba9/ed1034b0-1b84-11ef-a3b1-0634a5b1d8ed",
+      "AmplifyAppId": "d184w4ytixrll1"
+    },
+    "categories": {
+      "hosting": {
+        "S3AndCloudFront": {}
+      }
+    }
+  },
+  "newiraq": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-un4shop2024-newiraq-1f612-authRole",
+      "UnauthRoleArn": "arn:aws:iam::851725292743:role/amplify-un4shop2024-newiraq-1f612-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::851725292743:role/amplify-un4shop2024-newiraq-1f612-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-un4shop2024-newiraq-1f612-deployment",
+      "UnauthRoleName": "amplify-un4shop2024-newiraq-1f612-unauthRole",
+      "StackName": "amplify-un4shop2024-newiraq-1f612",
+      "StackId": "arn:aws:cloudformation:ca-central-1:851725292743:stack/amplify-un4shop2024-newiraq-1f612/b0720900-1bc7-11ef-bb82-06e6a0107d0d",
+      "AmplifyAppId": "d3h1ck6e7cvgbw"
+    },
+    "categories": {
+      "hosting": {
+        "S3AndCloudFront": {}
+      }
+    }
+  },
+  "devtest": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-un4shop2024-devtest-46af8-authRole",
+      "UnauthRoleArn": "arn:aws:iam::851725292743:role/amplify-un4shop2024-devtest-46af8-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::851725292743:role/amplify-un4shop2024-devtest-46af8-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-un4shop2024-devtest-46af8-deployment",
+      "UnauthRoleName": "amplify-un4shop2024-devtest-46af8-unauthRole",
+      "StackName": "amplify-un4shop2024-devtest-46af8",
+      "StackId": "arn:aws:cloudformation:eu-central-1:851725292743:stack/amplify-un4shop2024-devtest-46af8/11fbd430-1c2c-11ef-86fe-06b2b4d49177",
+      "AmplifyAppId": "d184w4ytixrll1"
+    },
+    "categories": {
+      "hosting": {
+        "S3AndCloudFront": {}
+      }
+    }
+  }
+}
