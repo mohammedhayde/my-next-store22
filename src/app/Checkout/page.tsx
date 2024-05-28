@@ -61,7 +61,7 @@ const CheckoutPage = () => {
     });
 
     // طلب إلى API لإكمال عملية الشراء
-    const response = await fetch('http://apiun4shop.eu-west-2.elasticbeanstalk.com/api/Orders', {
+    const response = await fetch('https://un4store.com//api/Orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

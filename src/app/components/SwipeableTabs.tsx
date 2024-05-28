@@ -42,7 +42,7 @@ export default function SwipeableTabButtons() {
   const fetchProducts = async (index: number) => {
     const category = tabTitles[index].toLowerCase();
     try {
-      const response = await fetch(`http://apiun4shop.eu-west-2.elasticbeanstalk.com/api/ProductsController21/ByCategoryName/${category}?pageNumber=1&pageSize=4`);
+      const response = await fetch(`https://un4store.com//api/ProductsController21/ByCategoryName/${category}?pageNumber=1&pageSize=4`);
       const data: Product[] = await response.json();
       setProducts(data);
       setHasMore(data.length === 4); // Set hasMore based on the number of fetched products
@@ -58,7 +58,7 @@ export default function SwipeableTabButtons() {
     const category = tabTitles[value].toLowerCase();
 
     try {
-      const response = await fetch(`http://apiun4shop.eu-west-2.elasticbeanstalk.com/api/ProductsController21/ByCategoryName/${category}?pageNumber=${nextPage}&pageSize=4`);
+      const response = await fetch(`https://un4store.com//api/ProductsController21/ByCategoryName/${category}?pageNumber=${nextPage}&pageSize=4`);
       const data: Product[] = await response.json();
       setProducts([...products, ...data]);
       setCurrentPage(nextPage);
