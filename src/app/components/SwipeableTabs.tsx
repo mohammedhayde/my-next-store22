@@ -20,29 +20,53 @@ interface Product {
   description?: string;
 }
 
+// Define the category type
+interface Category {
+  id: number;
+  name: string;
+}
+
 export default function SwipeableTabButtons() {
   const [value, setValue] = useState(0);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
-  const tabTitles = ["الملابس", "الإلكترونيات", "الكتب", "الألعاب", "المنزل"];
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    setCurrentPage(1);
-    setProducts([]); // Clear products when tab changes
-    fetchProducts(0); // Fetch products for the first tab initially
+    fetchCategories();
   }, []);
 
   useEffect(() => {
-    setCurrentPage(1);
-    setProducts([]); // Clear products when tab changes
-    fetchProducts(value); // Fetch products when tab changes
+    if (categories.length > 0) {
+      setCurrentPage(1);
+      setProducts([]); // Clear products when tab changes
+      fetchProducts(0); // Fetch products for the first tab initially
+    }
+  }, [categories]);
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      setCurrentPage(1);
+      setProducts([]); // Clear products when tab changes
+      fetchProducts(value); // Fetch products when tab changes
+    }
   }, [value]);
 
-  const fetchProducts = async (index: number) => {
-    const category = tabTitles[index].toLowerCase();
+  const fetchCategories = async () => {
     try {
-      const response = await fetch(`https://api.un4store.com//api/ProductsController21/ByCategoryName/${category}?pageNumber=1&pageSize=4`);
+      const response = await fetch('https://api.un4store.com/api/Categories/main');
+      const data: Category[] = await response.json();
+      setCategories(data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const fetchProducts = async (index: number) => {
+    const category = categories[index].name.toLowerCase();
+    try {
+      const response = await fetch(`https://api.un4store.com/api/ProductsController21/ByCategoryName/${category}?pageNumber=1&pageSize=4`);
       const data: Product[] = await response.json();
       setProducts(data);
       setHasMore(data.length === 4); // Set hasMore based on the number of fetched products
@@ -55,10 +79,10 @@ export default function SwipeableTabButtons() {
 
   const fetchMoreProducts = async () => {
     const nextPage = currentPage + 1;
-    const category = tabTitles[value].toLowerCase();
+    const category = categories[value].name.toLowerCase();
 
     try {
-      const response = await fetch(`https://api.un4store.com//api/ProductsController21/ByCategoryName/${category}?pageNumber=${nextPage}&pageSize=4`);
+      const response = await fetch(`https://api.un4store.com/api/ProductsController21/ByCategoryName/${category}?pageNumber=${nextPage}&pageSize=4`);
       const data: Product[] = await response.json();
       setProducts([...products, ...data]);
       setCurrentPage(nextPage);
@@ -85,8 +109,8 @@ export default function SwipeableTabButtons() {
         textColor="primary"
         variant="fullWidth"
       >
-        {tabTitles.map((title, index) => (
-          <Tab key={index} label={title} />
+        {categories.map((category, index) => (
+          <Tab key={index} label={category.name} />
         ))}
       </Tabs>
       <Swiper
@@ -99,7 +123,7 @@ export default function SwipeableTabButtons() {
         pagination={{ clickable: false }}
         navigation={false}
       >
-        {tabTitles.map((title, index) => (
+        {categories.map((category, index) => (
           <SwiperSlide key={index}>
             <InfiniteScroll
               dataLength={products.length}

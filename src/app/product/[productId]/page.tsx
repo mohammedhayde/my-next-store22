@@ -37,6 +37,12 @@ function ProductPage({ params }: { params: Params }) {
     fetchData();
   }, [productId]);
 
+  useEffect(() => {
+    if (product?.title) {
+      document.title = `${product.title} - المتحدة للإلكترونيات`;
+    }
+  }, [product]);
+
   const handleAddToCart = () => {
     if (product) {
       setIsAddingToCart(true);
@@ -58,6 +64,10 @@ function ProductPage({ params }: { params: Params }) {
 
   return (
     <Layout>
+      <Head>
+        <title>{product.title} - المتحدة للإلكترونيات</title>
+        <meta name="description" content={product.description} />
+      </Head>
       <div style={{ padding: '20px' }}>
         <div className="relative h-full bg-secondary px-2 py-4 md:px-0" style={{ direction: 'rtl' }}>
           <div className="container mb-12 overflow-hidden rounded-xl bg-white md:p-8">
