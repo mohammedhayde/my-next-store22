@@ -19,7 +19,7 @@ const ProductCard2: React.FC<ProductCard2Props> = ({ product }) => {
   const transformedProduct = {
     id: product.id.toString(),
     name: product.title,
-    price: `د.ع ${product.price.toFixed(2)}`,
+    price: `د.ع ${product.price}`,
     handle: product.handle,
     img: {
       src: product.imagePaths && product.imagePaths.length > 0 ? product.imagePaths[0] : '/path/to/default-image.jpg',
