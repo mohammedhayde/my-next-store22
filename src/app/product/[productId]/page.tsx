@@ -43,7 +43,7 @@ function ProductPage({ params }: { params: Params }) {
       addToCart(product);
       setTimeout(() => {
         setIsAddingToCart(false);
-      //  router.push('/Cart'); // إعادة التوجيه إلى صفحة الكارت
+       router.push('/Cart'); // إعادة التوجيه إلى صفحة الكارت
       }, 1000); // مدة الأنميشن قبل إعادة التوجيه (1000 ملي ثانية = 1 ثانية)
     }
   };
