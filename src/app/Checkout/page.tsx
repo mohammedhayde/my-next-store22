@@ -61,7 +61,7 @@ const CheckoutPage = () => {
     });
 
     // طلب إلى API لإكمال عملية الشراء
-    const response = await fetch('https://un4store.com//api/Orders', {
+    const response = await fetch('https://api.un4store.com//api/Orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

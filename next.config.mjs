@@ -53,7 +53,7 @@ const nextConfig = {
     NEXT_PUBLIC_ALGOLIA_APP_ID: process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
     NEXT_PUBLIC_ALGOLIA_PUBLIC_API_KEY: process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_API_KEY,
    
-    API_URL:"https://un4store.com/",
+    API_URL:"https://api.un4store.com/",
   },
 };
 

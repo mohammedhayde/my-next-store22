@@ -1,6 +1,6 @@
 export async function loadProductData(productId: string): Promise<Product | null> {
   try {
-    const response = await fetch(`https://un4store.com//api/ProductsController21/ByHandle/${productId}`);
+    const response = await fetch(`https://api.un4store.com//api/ProductsController21/ByHandle/${productId}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch product data, status: ${response.status}`);
     }
