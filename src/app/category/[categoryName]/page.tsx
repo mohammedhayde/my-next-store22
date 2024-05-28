@@ -26,7 +26,7 @@ const CategoryPage = () => {
         setProducts(fetchedProducts);
         setIsLoading(false);
       } catch (error) {
-        setError('Failed to fetch products');
+        setError('Failed to fetch products1');
         setIsLoading(false);
       }
     };
