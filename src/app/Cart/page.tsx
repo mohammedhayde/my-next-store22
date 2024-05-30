@@ -133,7 +133,11 @@ const CartPage = () => {
               <span className="text-lg font-bold">{totalPriceWithShipping()} د.ع</span>
             </div>
             <Link href="/Checkout">
-              <button className="disabled:text-accent-disabled flex items-center justify-center rounded-xl bg-red-500 text-white p-2 text-sm font-bold leading-loose transition duration-200 ease-in-out hover:bg-red-600 focus:outline-dashed focus:outline-2 focus:outline-offset-1 focus:outline-primary disabled:bg-primary-700 md:text-button h-14 w-full rounded-lg">
+              <button
+               data-event-category="Ecommerce"
+               data-event-action="initiate-checkout"
+               data-event-label="Initiate Checkout"
+              className="disabled:text-accent-disabled flex items-center justify-center rounded-xl bg-red-500 text-white p-2 text-sm font-bold leading-loose transition duration-200 ease-in-out hover:bg-red-600 focus:outline-dashed focus:outline-2 focus:outline-offset-1 focus:outline-primary disabled:bg-primary-700 md:text-button h-14 w-full rounded-lg">
                 أكمل الشراء
               </button>
             </Link>
