@@ -1,17 +1,20 @@
 // components/GTMTracker.tsx
 'use client';
+// components/GTMTracker.tsx
 import { useEffect, ReactNode } from 'react';
 
 const GTM_ID = 'GTM-K3X3FTXF';
+const GA_ID = 'G-PVZG39TGEM';
 
 interface GTMTrackerProps {
   children: ReactNode;
 }
 
-// تعريف dataLayer على كائن window
+// تعريف dataLayer و gtag على كائن window
 declare global {
   interface Window {
     dataLayer: Record<string, any>[];
+    gtag: (...args: any[]) => void;
   }
 }
 
@@ -65,9 +68,22 @@ const GTMTracker = ({ children }: GTMTrackerProps) => {
         ></iframe>
       </noscript>
       {/* End Google Tag Manager (noscript) */}
+      {/* Google Analytics */}
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `,
+        }}
+      />
       {children}
     </>
   );
 };
 
 export default GTMTracker;
+

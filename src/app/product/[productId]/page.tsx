@@ -121,7 +121,7 @@ function ProductPage({ params }: { params: Params }) {
               
                 <div className='fixed inset-x-0 bottom-[1px] z-40 w-full bg-white p-2 shadow-[0px_0px_8px_rgb(0,0,0,0.15)] md:static md:bg-none md:p-0 md:shadow-none'>
                   <div className="flex">
-                    <button
+                    <button data-event-category="Ecommerce" data-event-action="add-to-cart" data-event-label="Add to Cart"
                       onClick={handleAddToCart}
                       className={`add-to-cart disabled:text-accent-disabled flex items-center justify-center rounded-xl bg-red-500 text-white p-2 text-sm font-bold leading-loose transition duration-200 ease-in-out hover:bg-red-600 focus:outline-dashed focus:outline-2 focus:outline-offset-1 focus:outline-primary disabled:bg-primary-700 md:text-button h-14 w-full rounded-lg ${isAddingToCart ? 'opacity-50' : ''}`}
                       disabled={isAddingToCart}
