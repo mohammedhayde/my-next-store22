@@ -4,18 +4,25 @@ import dotenv from 'dotenv';
 // تحميل متغيرات البيئة من ملف .env
 dotenv.config();
 
+// طباعة المتغيرات للتحقق من تحميلها
+console.log('AWS_ACCESS_KEY_ID:', process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID);
+console.log('AWS_SECRET_ACCESS_KEY:', process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY);
+console.log('AWS_REGION:', process.env.NEXT_PUBLIC_AWS_REGION);
+console.log('NEXT_PUBLIC_AWS_BUCKET_NAME:', process.env.NEXT_PUBLIC_AWS_BUCKET_NAME);
+
+
 // تكوين AWS SDK باستخدام متغيرات البيئة
 AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION || 'eu-central-1',
+  accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
+  region: process.env.NEXT_PUBLIC_AWS_REGION || 'eu-central-1',
 });
 
 const s3 = new AWS.S3();
 
 export const uploadToS3 = async (key: string, body: Buffer | Uint8Array | Blob | string, contentType: string): Promise<string> => {
   const params = {
-    Bucket: 'un4software',
+    Bucket: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME!,
     Key: key,
     Body: body,
     ContentType: contentType,
@@ -34,7 +41,7 @@ export const uploadToS3 = async (key: string, body: Buffer | Uint8Array | Blob |
 
 export const deleteFromS3 = async (key: string): Promise<void> => {
   const params = {
-    Bucket: 'un4software',
+    Bucket: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME!,
     Key: key,
   };
 
