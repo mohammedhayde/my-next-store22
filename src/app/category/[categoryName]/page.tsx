@@ -25,7 +25,7 @@ const CategoryPage = () => {
     try {
       setIsLoading(true);
       setIsFetching(true);
-      const response = await fetch(`${process.env.API_URL}/api/ProductsController21/ByParentCategory/${categoryName}?pageNumber=${pageNumber}&pageSize=10`);
+      const response = await fetch(`${process.env.API_URL}/api/ProductsController21/ByCategoryName1/${categoryName}?pageNumber=${pageNumber}&pageSize=10`);
  
       if (!response.ok) {
         throw new Error('Failed to fetch products');
