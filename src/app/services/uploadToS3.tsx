@@ -1,9 +1,13 @@
 import AWS from 'aws-sdk';
+import dotenv from 'dotenv';
 
-// تكوين AWS SDK
+// تحميل متغيرات البيئة من ملف .env
+dotenv.config();
+
+// تكوين AWS SDK باستخدام متغيرات البيئة
 AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID || 'AKIA4MTWISTDQXZ4ERNR',
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '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',
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: process.env.AWS_REGION || 'eu-central-1',
 });
 

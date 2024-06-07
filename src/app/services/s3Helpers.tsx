@@ -1,8 +1,13 @@
 import AWS from 'aws-sdk';
+import dotenv from 'dotenv';
 
+// تحميل متغيرات البيئة من ملف .env
+dotenv.config();
+
+// تكوين AWS SDK باستخدام متغيرات البيئة
 AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID || 'AKIA4MTWISTDQXZ4ERNR',
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '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',
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: process.env.AWS_REGION || 'eu-central-1',
 });
 
@@ -40,40 +45,5 @@ export const deleteFromS3 = async (key: string): Promise<void> => {
   } catch (err) {
     console.error('Error deleting from S3:', err); // Debug log
     throw new Error('Error deleting from S3');
-  }
-};
-
-export const deleteFolderFromS3 = async (folderKey: string): Promise<void> => {
-  const listParams = {
-    Bucket: 'un4software',
-    Prefix: folderKey,
-  };
-
-  try {
-    const listedObjects = await s3.listObjectsV2(listParams).promise();
-
-    if (!listedObjects.Contents || listedObjects.Contents.length === 0) return;
-
-    const deleteParams = {
-      Bucket: 'un4software',
-      Delete: { Objects: [] as { Key: string }[] },
-    };
-
-    listedObjects.Contents.forEach(({ Key }) => {
-      if (Key) {
-        deleteParams.Delete.Objects.push({ Key });
-      }
-    });
-
-    await s3.deleteObjects(deleteParams).promise();
-
-    if (listedObjects.IsTruncated) {
-      await deleteFolderFromS3(folderKey);
-    }
-
-    console.log('Folder delete successful'); // Debug log
-  } catch (err) {
-    console.error('Error deleting folder from S3:', err); // Debug log
-    throw new Error('Error deleting folder from S3');
   }
 };
