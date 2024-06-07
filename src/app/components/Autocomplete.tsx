@@ -2,8 +2,18 @@ import algoliasearch from 'algoliasearch/lite';
 import { autocomplete } from '@algolia/autocomplete-js';
 import '@algolia/autocomplete-theme-classic';
 import { useEffect, useRef } from 'react';
+interface Product extends Record<string, any> {
+  objectID: string;
+  title: string;
+  price: number;
+  description: string;
+  handle: string;
+  categoryId: number;
+  imagePaths: string[];
+  discount?: number; // اجعل هذا الحقل اختياريًا إذا لم يكن دائمًا موجودًا
+}
 
-const searchClient = algoliasearch('BHHXVEKGFH', '59327a638018a363eace1923b8cb9c81');
+const searchClient = algoliasearch('EMBIL6SNNG', '58873b56533470d16c3d836d7b5142d6');
 
 const AutocompleteComponent = () => {
   const containerRef = useRef(null);
@@ -12,8 +22,9 @@ const AutocompleteComponent = () => {
     if (!containerRef.current) {
       return undefined;
     }
+    const autocompleteInstance = autocomplete<Product>({
 
-    const autocompleteInstance = autocomplete({
+   
       container: containerRef.current,
       placeholder: 'ما الذي تبحث عنه...',
       getSources({ query }) {
@@ -22,20 +33,20 @@ const AutocompleteComponent = () => {
             sourceId: 'products',
             getItems() {
               return searchClient
-                .initIndex('shopify_products')
-                .search(query)
+                .initIndex('UN4STORE_PRODUCT')
+                .search<Product>(query)
                 .then((result) => {
-                    console.log(result.hits); // تسجيل النتائج للفحص
-                    return result.hits;
-                  });
-                
+                  console.log(result.hits); // تسجيل النتائج للفحص
+                  return result.hits;
+                });
             },
             templates: {
               
               item({ item, html }) {
                 return html`<>
                 <li class="group" id="product#1430691" role="option" aria-selected="false" dir="rtl">
-                <a href="${item.handle}"
+                
+                <a href="https://www.un4store.com/product/${item.handle}"
                    class="flex items-center justify-between bg-white px-4 py-3 hover:bg-gray-300 focus:bg-gray-300 md:p-4">
                   <div class="flex flex-1 items-center justify-between">
                     <div class="flex flex-col items-center">
@@ -53,7 +64,7 @@ const AutocompleteComponent = () => {
                          data-nimg="1" 
                          sizes="59.4px" 
                          srcset="${item.imageSrcset}" 
-                         src="${item.image}"
+                         src="${item.imagePaths[0]}"
                          style="color: transparent; object-fit: contain; width: 59.4px; height: 59.4px;">
                   </div>
                 </a>
