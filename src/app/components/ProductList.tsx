@@ -3,7 +3,7 @@ import { fetchData, deleteData } from '@/app/services/apiHelpers';
 import AddProductForm from './AddProductForm';
 import UpdateProductForm from './UpdateProductForm';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { deleteFolderFromS3 } from '@/app/services/s3Helpers'; // تأكد من استيراد دالة الحذف من S3
+import { deleteFromS3 } from '@/app/services/s3Helpers'; // تأكد من استيراد دالة الحذف من S3
 
 interface Product {
   id: number;
@@ -63,7 +63,7 @@ const ProductList = () => {
       }
 
       // حذف المجلد من S3
-      await deleteFolderFromS3(`images/${handle}/`);
+      await deleteFromS3(`images/${handle}/`);
 
       // حذف المنتج من قاعدة البيانات
       await deleteData(`https://api.un4store.com/api/products/${id}`, token);
