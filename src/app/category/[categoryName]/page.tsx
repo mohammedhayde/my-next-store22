@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Layout from '@/app/components/Layout';
-import { Product } from '@/app/types/typesProduct'; // Ensure the path is correct
+import { Product } from '@/app/types/typesProduct'; // تأكد من صحة المسار
 import ProductCard2 from '@/app/components/ProductCard2';
 import { Typography } from '@mui/material';
 import ImageCarousel from '@/app/components/ImageCarousel';
@@ -25,7 +25,7 @@ const CategoryPage = () => {
     try {
       setIsLoading(true);
       setIsFetching(true);
-      const response = await fetch(`${process.env.API_URL}/api/ProductsController21/ByCategoryName/${categoryName}?pageNumber=${pageNumber}&pageSize=10`);
+      const response = await fetch(`${process.env.API_URL}/api/ProductsController21/ByParentCategory/${categoryName}?pageNumber=${pageNumber}&pageSize=10`);
  
       if (!response.ok) {
         throw new Error('Failed to fetch products');
@@ -34,7 +34,7 @@ const CategoryPage = () => {
       if (newProducts.length === 0) {
         setHasMore(false);
         if (pageNumber === 1) {
-          setError('No products found for this category.');
+          setError('لا توجد منتجات في هذا القسم.');
         }
       } else {
         setProducts(prevProducts => {
@@ -42,12 +42,12 @@ const CategoryPage = () => {
           const uniqueNewProducts = newProducts.filter(p => !productIds.has(p.id));
           return [...prevProducts, ...uniqueNewProducts];
         });
-        setHasMore(newProducts.length === 10); // Assumes pageSize is 10
+        setHasMore(newProducts.length === 10); // بافتراض أن حجم الصفحة هو 10
       }
       setIsLoading(false);
       setIsFetching(false);
     } catch (error) {
-      setError('Failed to fetch products');
+      setError('فشل في جلب المنتجات');
       setIsLoading(false);
       setIsFetching(false);
     }
@@ -76,26 +76,18 @@ const CategoryPage = () => {
     observer.current = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         console.log(`Intersecting - increasing page to ${page + 1}`);
-        setIsFetching(true); // Add a lock to prevent multiple triggers
+        setIsFetching(true); // إضافة قفل لمنع التكرار
         setPage(prevPage => prevPage + 1);
       }
     });
     if (node) observer.current.observe(node);
   }, [isLoading, hasMore, isFetching, page]);
 
-  if (isLoading && page === 1) {
-    return <div>Loading...</div>;
-  }
-
-  if (error && page === 1) {
-    return <div>{error}</div>;
-  }
-
   return (
     <Layout>
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <ImageCarousel apiEndpoint={`https://api.un4store.com/api/Categories/sub/${encodedCategoryName}`} />
+          <ImageCarousel apiEndpoint={`https://api.un4store.com/api/Categories/sub/${encodedCategoryName}`} />
 
           <h2 className="sr-only">الأقسام</h2>
           <div className="flex justify-end">
@@ -123,6 +115,13 @@ const CategoryPage = () => {
             <div className="col-span-2 lg:col-span-3 xl:col-span-4 text-center">
               <Typography variant="body1" color="textSecondary">
                 لا توجد المزيد من المنتجات.
+              </Typography>
+            </div>
+          )}
+          {error && (
+            <div className="col-span-2 lg:col-span-3 xl:col-span-4 text-center">
+              <Typography variant="body1" color="error">
+                {error}
               </Typography>
             </div>
           )}
