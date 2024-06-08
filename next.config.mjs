@@ -15,6 +15,7 @@ const nextConfig = {
         protocol: "http",
         hostname: "localhost",
       },
+      
       {
         protocol: "https",
         hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com",
@@ -41,7 +42,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "medusa-server-testing.s3.us-east-1.amazonaws.com",
+        hostname: "imageun4store.s3.eu-central-1.amazonaws.com",
       },
       {
         protocol: "http",
