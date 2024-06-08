@@ -214,7 +214,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ onAdd }) => {
           <div>
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white p-2 rounded-md shadow-sm"
+              className="w-full bg-blue-600 text-white p-2 rounded-md shadow-sm"
             >
               Add Product
             </button>
