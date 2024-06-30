@@ -10,7 +10,7 @@ interface Product {
   handle: string;
   imagePaths: string[];
   description?: string;
-  formattedPrice:string;
+  formattedPrice?:string;
 }
 
 interface ProductCardProps {
