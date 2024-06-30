@@ -22,6 +22,7 @@ interface Product {
   imagePaths: string[];
   handle: string;
   formattedPrice :string;
+
 }
 
 function ProductPage({ params }: { params: Params }) {
@@ -59,7 +60,7 @@ function ProductPage({ params }: { params: Params }) {
           {
             queryID: '', // تأكد من إدراج queryID إذا كان متاحًا
             price: product.price,
-            discount: product.price * 0.25, // افتراض خصم بنسبة 25%
+            discount:0, // افتراض خصم بنسبة 25%
             quantity: 1, // يمكن تحديثه إذا كان لديك كمية محددة
           },
         ],

@@ -87,7 +87,8 @@ const CheckoutPage = () => {
         objectData: cart.map(item => ({
           queryID: '', // تأكد من إدراج queryID إذا كان متاحًا
           price: item.price,
-          discount: item.discount || 0,
+        //  discount: item.discount || 0,
+        discount:  0,
           quantity: item.quantity,
         })),
         currency: 'IQD',

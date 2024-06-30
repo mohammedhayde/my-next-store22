@@ -22,4 +22,6 @@ interface Product {
   price: number;
   imagePaths: string[];
   handle: string;
+  formattedPrice :string;
+
 }
