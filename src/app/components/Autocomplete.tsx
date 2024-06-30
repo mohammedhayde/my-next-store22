@@ -2,6 +2,7 @@ import algoliasearch from 'algoliasearch/lite';
 import { autocomplete } from '@algolia/autocomplete-js';
 import '@algolia/autocomplete-theme-classic';
 import { useEffect, useRef } from 'react';
+import aa from 'search-insights';
 interface Product extends Record<string, any> {
   objectID: string;
   title: string;
@@ -12,7 +13,10 @@ interface Product extends Record<string, any> {
   imagePaths: string[];
   discount?: number; // اجعل هذا الحقل اختياريًا إذا لم يكن دائمًا موجودًا
 }
-
+aa('init', {
+  appId: 'EMBIL6SNNG',
+  apiKey: '58873b56533470d16c3d836d7b5142d6',
+});
 const searchClient = algoliasearch('EMBIL6SNNG', '58873b56533470d16c3d836d7b5142d6');
 
 const AutocompleteComponent = () => {
@@ -33,12 +37,23 @@ const AutocompleteComponent = () => {
             sourceId: 'products',
             getItems() {
               return searchClient
-                .initIndex('UN4STORE_PRODUCT')
-                .search<Product>(query)
-                .then((result) => {
-                  console.log(result.hits); // تسجيل النتائج للفحص
-                  return result.hits;
+              .initIndex('UN4STORE_PRODUCT')
+              .search<Product>(query)
+              .then((result) => {
+                console.log(result.hits);
+
+                // إرسال حدث مشاهدة نتائج البحث
+                aa('viewedObjectIDs', {
+                  eventName: 'Products Viewed4',
+                  index: 'UN4STORE_PRODUCT',
+                  objectIDs: result.hits.map(item => item.objectID),
+                  
                 });
+
+                return result.hits;
+              });
+             
+
             },
             templates: {
               

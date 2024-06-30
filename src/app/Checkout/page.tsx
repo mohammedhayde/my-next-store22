@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Layout from '@/app/components/Layout';
 import { Product } from '@/app/types/typesProduct'; // تأكد من مسار الملف بشكل صحيح
 import { useRouter } from 'next/navigation';
+import aa from 'search-insights';
 
 interface CartItem extends Product {
   quantity: number;
@@ -77,7 +78,22 @@ const CheckoutPage = () => {
 
     if (response.ok) {
       alert('شكراً لطلبك! تم إكمال الشراء بنجاح.');
-      // يمكنك أيضًا مسح السلة هنا
+      // إرسال حدث الشراء إلى Algolia Insights
+      aa('purchasedObjectIDsAfterSearch', {
+        eventName: 'Products Purchased',
+        index: 'UN4STORE_PRODUCT',
+        objectIDs: cart.map(item =>   item.id.toString()), // استخدام objectID أو id
+        queryID: '', // تأكد من إدراج queryID إذا كان متاحًا
+        objectData: cart.map(item => ({
+          queryID: '', // تأكد من إدراج queryID إذا كان متاحًا
+          price: item.price,
+          discount: item.discount || 0,
+          quantity: item.quantity,
+        })),
+        currency: 'IQD',
+      });
+
+      // مسح السلة
       localStorage.removeItem('cart');
       setCart([]); // قم بتفريغ حالة السلة
       setTimeout(() => {

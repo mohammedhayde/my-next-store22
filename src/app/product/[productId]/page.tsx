@@ -7,6 +7,7 @@ import Layout from '@/app/components/Layout';
 import { SfRating } from '@storefront-ui/react';
 import { addToCart } from '@/app/services/cart';
 import { useRouter } from 'next/navigation';
+import aa from 'search-insights';
 
 interface Params {
   productId: string;
@@ -20,6 +21,7 @@ interface Product {
   price: number;
   imagePaths: string[];
   handle: string;
+  formattedPrice :string;
 }
 
 function ProductPage({ params }: { params: Params }) {
@@ -45,6 +47,25 @@ function ProductPage({ params }: { params: Params }) {
 
   const handleAddToCart = () => {
     if (product) {
+
+            
+      // إرسال حدث الإضافة إلى السلة
+      aa('addedToCartObjectIDsAfterSearch', {
+        eventName: 'Product Added To Cart',
+        index: 'UN4STORE_PRODUCT',
+        objectIDs: [product.id.toString()],
+        queryID: '', // تأكد من إدراج queryID إذا كان متاحًا
+        objectData: [
+          {
+            queryID: '', // تأكد من إدراج queryID إذا كان متاحًا
+            price: product.price,
+            discount: product.price * 0.25, // افتراض خصم بنسبة 25%
+            quantity: 1, // يمكن تحديثه إذا كان لديك كمية محددة
+          },
+        ],
+        currency: 'IQD',
+      });
+
       setIsAddingToCart(true);
       addToCart(product);
       setTimeout(() => {
@@ -101,10 +122,10 @@ function ProductPage({ params }: { params: Params }) {
                 </div>
                 <div className="mt-4 flex items-end">
                   <div className="me-2 text-3xl font-bold leading-10 text-primary" data-testid="product-price-sale">
-                    {product.price} د.ع
+                    {product.formattedPrice} 
                   </div>
                   <div className="text-lg font-medium text-gray-900 line-through" data-testid="product-price-regular">
-                    {product.price} د.ع
+                    {product.formattedPrice} 
                   </div>
                   <div className="flex grow justify-end" data-testid="product-price-discount">
                     <div

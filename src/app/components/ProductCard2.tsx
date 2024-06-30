@@ -9,6 +9,7 @@ interface Product {
   handle: string;
   imagePaths: string[];
   description?: string;
+  formattedPrice:string;
 }
 
 interface ProductCard2Props {
@@ -20,6 +21,7 @@ const ProductCard2: React.FC<ProductCard2Props> = ({ product }) => {
     id: product.id.toString(),
     name: product.title,
     price: `د.ع ${product.price}`,
+    formattedPrice : product.formattedPrice,
     handle: product.handle,
     img: {
       src: product.imagePaths && product.imagePaths.length > 0 ? product.imagePaths[0] : '/path/to/default-image.jpg',
@@ -39,7 +41,7 @@ const ProductCard2: React.FC<ProductCard2Props> = ({ product }) => {
         />
       </div>
       <h3 className="mt-4 text-sm text-gray-700 line-clamp-2">{transformedProduct.name}</h3>
-      <p className="mt-1 text-lg font-medium text-gray-900">{transformedProduct.price}</p>
+      <p className="mt-1 text-lg font-medium text-gray-900">{transformedProduct.formattedPrice}</p>
     </div>
   );
 };

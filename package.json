@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@algolia/autocomplete-js": "^1.17.0",
+    "@algolia/autocomplete-plugin-algolia-insights": "^1.17.2",
     "@algolia/autocomplete-theme-classic": "^1.17.0",
     "@algolia/client-search": "^4.23.3",
     "@emotion/react": "^11.11.4",
@@ -28,6 +29,7 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-instantsearch-dom": "^6.40.4",
     "react-instantsearch-hooks-web": "^6.47.3",
+    "search-insights": "^2.14.0",
     "swiper": "^11.1.1"
   },
   "devDependencies": {

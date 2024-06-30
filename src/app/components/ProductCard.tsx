@@ -10,6 +10,7 @@ interface Product {
   handle: string;
   imagePaths: string[];
   description?: string;
+  formattedPrice:string;
 }
 
 interface ProductCardProps {
@@ -21,7 +22,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const transformedProduct = {
     id: product.id.toString(),
     name: product.title,
-    price: `د.ع ${product.price.toFixed(2)}`,
+    formattedPrice: product.formattedPrice,
+
+  price: `د.ع ${product.price.toFixed(2)}`,
     handle: product.handle,
     img: {
       src: product.imagePaths && product.imagePaths.length > 0 ? product.imagePaths[0] : 'https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=2568&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -54,10 +57,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
       <div className="p-2 border-t border-neutral-200 typography-text-sm">
         <SfLink href={"/product/" + transformedProduct.handle} variant="secondary" className="no-underline productName">
-          {transformedProduct.name}
+          {transformedProduct.name} 
         </SfLink>
         <span className="block mt-2 font-bold" style={{ color: '#fe4960' }}>
-          {transformedProduct.price}
+          {transformedProduct.formattedPrice}
+          
+          
         </span>
       </div>
     </div>
