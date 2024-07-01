@@ -44,7 +44,7 @@ const CartPage = () => {
     }
   };
 
-  const shippingCost = 6; // يمكنك تعديل هذا الرقم بناءً على سياسة الشحن لديك
+  const shippingCost = 5000; // يمكنك تعديل هذا الرقم بناءً على سياسة الشحن لديك
 
   const totalPrice = () => {
     return Object.values(cart).reduce((acc, { price, quantity }) => acc + price * quantity, 0);
@@ -125,7 +125,7 @@ const CartPage = () => {
             </div>
             <div className="my-4 flex justify-between">
               <span className="text-gray-800">كلفة التوصيل</span>
-              <span className="flex items-center font-bold">6 د.ع</span>
+              <span className="flex items-center font-bold">6000 د.ع</span>
             </div>
             <hr className="my-5 border-gray-500" />
             <div className="my-4 flex justify-between">
