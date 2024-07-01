@@ -56,13 +56,21 @@ const UpdateCategoryForm: React.FC<UpdateCategoryFormProps> = ({ category, onUpd
     const updatedCategory = {
       name,
       image: imageUrl,
-      parentCategoryId: parentCategoryId !== undefined ? parentCategoryId : 0, // Set to 0 if undefined
+      parentCategoryId: parentCategoryId !== undefined ? parentCategoryId : null, // Set to null if undefined
     };
 
     try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No token found');
+      }
+
       const response = await fetch(`https://api.un4store.com/api/categories/${category.id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
         body: JSON.stringify(updatedCategory),
       });
       if (response.ok) {

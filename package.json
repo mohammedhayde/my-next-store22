@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@algolia/autocomplete-js": "^1.17.2",
+    "@algolia/autocomplete-theme-classic": "^1.17.2",
     "@lexical/react": "^0.15.0",
     "@lexical/rich-text": "^0.15.0",
     "algoliasearch": "^4.23.3",
