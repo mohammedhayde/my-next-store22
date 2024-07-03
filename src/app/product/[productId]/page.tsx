@@ -8,6 +8,7 @@ import { SfRating } from '@storefront-ui/react';
 import { addToCart } from '@/app/services/cart';
 import { useRouter } from 'next/navigation';
 import aa from 'search-insights';
+import dynamic from 'next/dynamic';
 
 interface Params {
   productId: string;
@@ -24,7 +25,10 @@ interface Product {
   formattedPrice :string;
 
 }
-
+// Dynamically import the LookingSimilar component to ensure it runs only on the client side
+const LookingSimilar = dynamic(() => import('@/app/components/LookingSimilar'), {
+  ssr: false,
+});
 function ProductPage({ params }: { params: Params }) {
   const { productId } = params;
   const [product, setProduct] = useState<Product | null>(null);
@@ -140,6 +144,7 @@ function ProductPage({ params }: { params: Params }) {
                 <div className="mt-4 mb-4 flex flex-col">
                   <SfRating value={3.5} />
                 </div>
+
               
                 <div className='fixed inset-x-0 bottom-[1px] z-40 w-full bg-white p-2 shadow-[0px_0px_8px_rgb(0,0,0,0.15)] md:static md:bg-none md:p-0 md:shadow-none'>
                   <div className="flex">
@@ -179,9 +184,14 @@ function ProductPage({ params }: { params: Params }) {
 
                 </div>
           </div>
+
+
         </div>
       </div>
+      <LookingSimilar objectIDs={[product.id.toFixed()]} />
+
     </Layout>
+    
   );
 }
 

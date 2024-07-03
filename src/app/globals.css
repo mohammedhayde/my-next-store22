@@ -13,6 +13,31 @@
     margin-left: auto;
 }
 
+.looking-similar-root {
+  width: 100%;
+  overflow: hidden;
+}
+
+.looking-similar-list {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.looking-similar-list::-webkit-scrollbar {
+  display: none;
+}
+
+.looking-similar-item {
+  flex: 0 0 auto;
+  margin-right: 1rem;
+}
+
+
+
 
 .line-clamp-2 {
   display: -webkit-box;
