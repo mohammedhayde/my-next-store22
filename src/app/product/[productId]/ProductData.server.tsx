@@ -9,6 +9,8 @@ export async function loadProductData(productId: string): Promise<Product | null
     return data.length > 0 ? data[0] : null;  // Return null if no data found
   } catch (error) {
     console.error("Failed to load product data:", error);
+    // تحويل المستخدم إلى الصفحة الرئيسية
+    window.location.href = '/';  // يفترض أن '/' هو مسار الصفحة الرئيسية
     return null;
   }
 }
@@ -22,6 +24,5 @@ interface Product {
   price: number;
   imagePaths: string[];
   handle: string;
-  formattedPrice :string;
-
+  formattedPrice: string;
 }
